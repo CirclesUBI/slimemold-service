@@ -1,0 +1,29 @@
+{
+  "name": "slimemold-service",
+  "version": "0.0.0",
+  "description": "Trust network and transitive transfer finding API service",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CirclesUBI/slimemold-service.git"
+  },
+  "keywords": [
+    "API",
+    "pathfinder",
+    "circles",
+    "transitive-trust",
+    "trust-network"
+  ],
+  "author": "",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/CirclesUBI/slimemold-service/issues"
+  },
+  "homepage": "https://github.com/CirclesUBI/slimemold-service#readme",
+  "devDependencies": {
+    "typescript": "^4.3.2"
+  }
+}
