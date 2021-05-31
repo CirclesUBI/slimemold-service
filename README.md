@@ -1,2 +1,65 @@
-# slimemold-service
-Trust network and transfer finding service
+<div align="center">
+	<img width="80" src="https://raw.githubusercontent.com/CirclesUBI/.github/main/assets/logo.svg" />
+</div>
+
+<h1 align="center">slimemold-service</h1>
+
+<div align="center">
+ <strong>
+  Trust network and transitive transfer finding API service 
+ </strong>
+</div>
+
+<br />
+
+<div align="center">
+  <!-- Licence -->
+  <a href="https://github.com/CirclesUBI/slimemold-serice/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/CirclesUBI/slimemold-service?style=flat-square&color=%23cc1e66" alt="License" height="18">
+  </a>
+  <!-- Discourse -->
+  <a href="https://aboutcircles.com/">
+    <img src="https://img.shields.io/discourse/topics?server=https%3A%2F%2Faboutcircles.com%2F&style=flat-square&color=%23faad26" alt="chat" height="18"/>
+  </a>
+  <!-- Twitter -->
+  <a href="https://twitter.com/CirclesUBI">
+    <img src="https://img.shields.io/twitter/follow/circlesubi.svg?label=twitter&style=flat-square&color=%23f14d48" alt="Follow Circles" height="18">
+  </a>
+</div>
+
+<div align="center">
+  <h3>
+    <a href="https://handbook.joincircles.net">
+      Handbook
+    </a>
+    <span> | </span>
+    <a href="https://github.com/CirclesUBI/slimemold-service/releases">
+      Releases
+    </a>
+    <span> | </span>
+    <a href="https://github.com/CirclesUBI/.github/blob/main/CONTRIBUTING.md">
+      Contributing
+    </a>
+  </h3>
+</div>
+
+<br/>
+
+An off-chain API service to find transitive transfer paths to send tokens within the trust graph.
+
+[`circles`]: https://joincircles.net
+
+## Features
+
+- Indexes and stores Circles trust network
+- Calculate transitive transfer steps to send Circles
+
+## Requirements
+
+- NodeJS environment (v14)
+
+## License
+
+GNU Affero General Public License v3.0 [`AGPL-3.0`]
+
+[`AGPL-3.0`]: LICENSE
