@@ -58,6 +58,22 @@ An off-chain API service to find transitive transfer paths to send tokens within
 
 - NodeJS environment (v14)
 
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Copy .env file for local development
+cp .env.example .env
+
+# Check code formatting
+npm run lint
+
+# Start local server and watch changes
+npm run watch
+```
+
 ## License
 
 GNU Affero General Public License v3.0 [`AGPL-3.0`]
