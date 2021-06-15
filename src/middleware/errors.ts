@@ -1,16 +1,20 @@
 import httpStatus from 'http-status';
 import { isCelebrateError as isValidationError } from 'celebrate';
 
+import type { NextFunction } from 'express';
+
 import APIError from '../helpers/errors';
 import logger from '../helpers/logger';
 import { respondWithError } from '../helpers/responses';
 
-// eslint-disable-next-line no-unused-vars
 export default function errorsMiddleware(
   err: Error,
   req: Express.Request,
   res: Express.Response,
-  next
+  // Note: We need to pass in the 4th argument, even when its not used,
+  // otherwise express.js will not give us the error itself as a first argument
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  next: NextFunction
 ): void {
   let apiError: APIError;
   // Check if error is public facing and known to us
