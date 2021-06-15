@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
 import { isCelebrateError as isValidationError } from 'celebrate';
 
-import type { NextFunction } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 
 import APIError from '../helpers/errors';
 import logger from '../helpers/logger';
@@ -9,8 +9,8 @@ import { respondWithError } from '../helpers/responses';
 
 export default function errorsMiddleware(
   err: Error,
-  req: Express.Request,
-  res: Express.Response,
+  req: Request,
+  res: Response,
   // Note: We need to pass in the 4th argument, even when its not used,
   // otherwise express.js will not give us the error itself as a first argument
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -5,7 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import methodOverride from 'method-override';
 
-import errorsMiddleware from './middleware/errors'; // TODO fix ts types in this file and helper files
+import errorsMiddleware from './middleware/errors';
 
 const DEFAULT_PORT = 3000;
 
