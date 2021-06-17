@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import TransferController from '~/controllers/transfer';
+import TransferController from '~/api/transfer/controller';
 import { validateEnvironmentVariables } from '~/helpers/environment';
 import TransferService from '~/services/transfer';
 

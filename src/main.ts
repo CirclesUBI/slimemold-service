@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import {
@@ -18,6 +19,9 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
+  // Validate all incoming requests
+  app.useGlobalPipes(new ValidationPipe());
+
   // Register middlewares
   app.register(compression);
   app.register(fastifyHelmet, {
@@ -33,7 +37,7 @@ async function bootstrap() {
     .setLicense(pkg.license, pkg.homepage)
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('/', app, document);
 
   // Start server
   const configService = app.get(ConfigService);
