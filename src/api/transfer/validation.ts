@@ -1,16 +1,25 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty } from 'class-validator';
+import { IsEthereumAddress, IsNotEmpty, IsNumberString } from 'class-validator';
 
 export class FindTransferSteps {
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Ethereum sender address of transitive transaction',
+  })
   @IsNotEmpty()
+  @IsEthereumAddress()
   from: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Ethereum receiver address of transitive transaction',
+  })
   @IsNotEmpty()
+  @IsEthereumAddress()
   to: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Amount of transaction in Wei',
+  })
   @IsNotEmpty()
+  @IsNumberString()
   value: string;
 }
