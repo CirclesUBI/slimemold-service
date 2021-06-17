@@ -71,6 +71,7 @@
     "@nestjs/platform-fastify": "^7.6.18",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
+    "fastify-compress": "^3.6.0",
     "fastify-helmet": "^5.3.1"
   }
 }
