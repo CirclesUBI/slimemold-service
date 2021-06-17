@@ -1,5 +1,5 @@
-import { Module, ValidationPipe } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
@@ -10,19 +10,8 @@ import compression from 'fastify-compress';
 import { fastifyHelmet } from 'fastify-helmet';
 
 import pkg from '../package.json';
-import ApiModule from '~/api';
 
-import { validateEnvironmentVariables } from '~/helpers/environment';
-
-@Module({
-  imports: [
-    ConfigModule.forRoot({
-      validate: validateEnvironmentVariables,
-    }),
-    ApiModule,
-  ],
-})
-class MainModule {}
+import MainModule from '~/modules/main/main.module';
 
 async function startServer() {
   // Create Fastify HTTP server instance
@@ -32,7 +21,11 @@ async function startServer() {
   );
 
   // Validate all incoming requests
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      forbidUnknownValues: true,
+    }),
+  );
 
   // Register middlewares
   app.register(compression);
