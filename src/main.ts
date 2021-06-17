@@ -1,5 +1,5 @@
-import { ValidationPipe } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { Module, ValidationPipe } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
@@ -10,12 +10,24 @@ import compression from 'fastify-compress';
 import { fastifyHelmet } from 'fastify-helmet';
 
 import pkg from '../package.json';
-import ServerModule from '~/server';
+import ApiModule from '~/api';
 
-async function bootstrap() {
+import { validateEnvironmentVariables } from '~/helpers/environment';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      validate: validateEnvironmentVariables,
+    }),
+    ApiModule,
+  ],
+})
+class MainModule {}
+
+async function startServer() {
   // Create Fastify HTTP server instance
   const app = await NestFactory.create<NestFastifyApplication>(
-    ServerModule,
+    MainModule,
     new FastifyAdapter(),
   );
 
@@ -36,14 +48,12 @@ async function bootstrap() {
     .setContact(pkg.name, pkg.homepage, null)
     .setLicense(pkg.license, pkg.homepage)
     .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('/', app, document);
+  SwaggerModule.setup('/', app, SwaggerModule.createDocument(app, config));
 
   // Start server
   const configService = app.get(ConfigService);
   const port = configService.get('PORT');
-
   await app.listen(port, '0.0.0.0');
 }
 
-bootstrap();
+startServer();
