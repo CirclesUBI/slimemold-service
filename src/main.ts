@@ -4,9 +4,11 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import compression from 'fastify-compress';
 import { fastifyHelmet } from 'fastify-helmet';
 
+import pkg from '../package.json';
 import ServerModule from '~/server';
 
 async function bootstrap() {
@@ -18,7 +20,20 @@ async function bootstrap() {
 
   // Register middlewares
   app.register(compression);
-  app.register(fastifyHelmet);
+  app.register(fastifyHelmet, {
+    contentSecurityPolicy: false,
+  });
+
+  // Setup OpenAPI endpoint
+  const config = new DocumentBuilder()
+    .setTitle(pkg.name)
+    .setDescription(pkg.description)
+    .setVersion(pkg.version)
+    .setContact(pkg.name, pkg.homepage, null)
+    .setLicense(pkg.license, pkg.homepage)
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
 
   // Start server
   const configService = app.get(ConfigService);

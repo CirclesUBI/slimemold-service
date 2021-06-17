@@ -69,9 +69,12 @@
     "@nestjs/config": "^0.6.3",
     "@nestjs/core": "^7.6.18",
     "@nestjs/platform-fastify": "^7.6.18",
+    "@nestjs/swagger": "^4.8.0",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "fastify-compress": "^3.6.0",
-    "fastify-helmet": "^5.3.1"
+    "fastify-helmet": "^5.3.1",
+    "fastify-swagger": "^4.7.0",
+    "swagger-ui-express": "^4.1.6"
   }
 }
