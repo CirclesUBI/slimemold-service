@@ -3,13 +3,16 @@
     "target": "es2017",
     "module": "commonjs",
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "~/*": ["./*"]
+    }
   }
 }

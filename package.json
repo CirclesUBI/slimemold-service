@@ -1,6 +1,6 @@
 {
   "name": "slimemold-service",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Trust network and transitive transfer finding API service",
   "main": "src/main.ts",
   "scripts": {
@@ -23,7 +23,11 @@
     "transitive-trust",
     "trust-network"
   ],
-  "author": "",
+  "contributors": [
+    "adzialocha",
+    "llunaCreixent",
+    "louilinn"
+  ],
   "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/CirclesUBI/slimemold-service/issues"
@@ -48,6 +52,7 @@
     "@typescript-eslint/parser": "^4.26.0",
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-prettier": "^3.4.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.3.0",

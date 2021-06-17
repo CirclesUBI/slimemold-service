@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 
-import TransferService from '../services/transfer';
+import TransferService from '~/services/transfer';
 
 @Controller()
 export default class TransferController {

@@ -18,7 +18,7 @@ class EnvironmentVariables {
 // Checks `.env` file for missing environment variables and throws an error
 // accordingly. See: https://docs.nestjs.com/techniques/configuration
 export function validateEnvironmentVariables(
-  config: Record<string, unknown>
+  config: Record<string, unknown>,
 ): EnvironmentVariables {
   const validatedConfig = plainToClass(EnvironmentVariables, config, {
     enableImplicitConversion: true,
