@@ -1,0 +1,39 @@
+name: run-tests
+
+on: [push]
+
+jobs:
+
+  run-api-tests:
+    runs-on: ubuntu-latest
+
+    env:
+      NODE_ENV: test
+      PORT: 3000
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Read node version from .nvmrc
+        id: nvmrc
+        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '${{ steps.nvmrc.outputs.NODE_VERSION }}'
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+            ${{ runner.OS }}-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - run: npm test
