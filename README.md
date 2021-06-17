@@ -6,7 +6,7 @@
 
 <div align="center">
  <strong>
-  Trust network and transitive transfer finding API service 
+  Trust network and transitive transfer finding API service
  </strong>
 </div>
 
@@ -72,6 +72,23 @@ npm run lint
 
 # Start local server and watch changes
 npm run watch
+
+# Run tests via `jest`
+npm run test
+npm run test:watch
+```
+
+## Deployment
+
+```bash
+# Clean `./dist` folder from previous builds
+npm run clean
+
+# Build project files and copy them to `./dist` folder
+npm run build
+
+# Start node process
+npm run start
 ```
 
 ## License

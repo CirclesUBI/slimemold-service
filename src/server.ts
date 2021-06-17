@@ -1,28 +1,17 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import compression from 'compression';
-import cors from 'cors';
-import helmet from 'helmet';
-import methodOverride from 'method-override';
+import { ConfigModule } from '@nestjs/config';
+import { Module } from '@nestjs/common';
 
-import errorsMiddleware from './middleware/errors';
+import TransferController from './controllers/transfer';
+import TransferService from './services/transfer';
+import { validateEnvironmentVariables } from './helpers/environment';
 
-const DEFAULT_PORT = 3000;
-
-// Initialize express instance
-const server = express();
-server.set('port', process.env.PORT || DEFAULT_PORT);
-
-// Use HTTP middleware
-server.use(compression());
-server.use(bodyParser.json());
-server.use(methodOverride());
-
-// Use CORS and security middleware
-server.use(cors());
-server.use(helmet());
-
-// Use middleware to handle all thrown errors
-server.use(errorsMiddleware);
-
-export default server;
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      validate: validateEnvironmentVariables,
+    }),
+  ],
+  controllers: [TransferController],
+  providers: [TransferService],
+})
+export default class ServerModule {}
