@@ -1,5 +1,4 @@
 import { ValidationPipe } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
@@ -11,6 +10,7 @@ import { fastifyHelmet } from 'fastify-helmet';
 
 import pkg from '../package.json';
 
+import ConfigService from '~/modules/config/config.service';
 import MainModule from '~/modules/main/main.module';
 
 async function startServer() {
@@ -34,19 +34,22 @@ async function startServer() {
   });
 
   // Setup OpenAPI endpoint
-  const config = new DocumentBuilder()
+  const openAPIConfig = new DocumentBuilder()
     .setTitle(pkg.name)
     .setDescription(pkg.description)
     .setVersion(pkg.version)
     .setContact(pkg.name, pkg.homepage, null)
     .setLicense(pkg.license, pkg.homepage)
     .build();
-  SwaggerModule.setup('/', app, SwaggerModule.createDocument(app, config));
+  SwaggerModule.setup(
+    '/',
+    app,
+    SwaggerModule.createDocument(app, openAPIConfig),
+  );
 
   // Start server
   const configService = app.get(ConfigService);
-  const port = configService.get('PORT');
-  await app.listen(port, '0.0.0.0');
+  await app.listen(configService.get('PORT'), '0.0.0.0');
 }
 
 startServer();
