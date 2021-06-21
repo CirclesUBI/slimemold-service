@@ -45,14 +45,14 @@
 
 <br/>
 
-An off-chain API service to find transitive transfer paths to send tokens within the trust graph.
+Off-chain API service for [`Circles`] to find transitive transfer steps to send tokens within the trust graph.
 
 [`circles`]: https://joincircles.net
 
 ## Features
 
 - Indexes and stores Circles trust network
-- Calculate transitive transfer steps to send Circles
+- Calculate transitive transfer steps to send tokens
 
 ## Requirements
 
