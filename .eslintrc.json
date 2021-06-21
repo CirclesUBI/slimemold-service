@@ -1,7 +1,8 @@
 {
   "env": {
     "es2021": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "extends": [
     "eslint:recommended",
@@ -15,26 +16,33 @@
   },
   "plugins": [
     "@typescript-eslint",
-    "prettier"
+    "prettier",
+    "import"
   ],
   "rules": {
-    "prettier/prettier": ["error", { "singleQuote": true }],
-    "comma-style": [
+    "prettier/prettier": 1,
+    "import/order": [
       "error",
-      "last"
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "type",
+          ["internal", "parent", "sibling", "index"]
+        ],
+        "pathGroups": [
+          {
+            "pattern": "~/*",
+            "group": "internal"
+          }
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
     ],
-    "indent": [
-      "error",
-      2
-    ],
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
-    "no-console": "error",
-    "semi": [
-      "error",
-      "always"
-    ]
+    "sort-imports": ["error", { "ignoreDeclarationSort": true }]
   }
 }
