@@ -7,7 +7,7 @@
     "build": "nest build",
     "clean": "rimraf dist",
     "lint": "eslint --ignore-path .gitignore .",
-    "start": "node dist/main",
+    "start": "node dist/src/main",
     "test": "jest",
     "test:watch": "jest --watch",
     "watch": "nest start --watch"
