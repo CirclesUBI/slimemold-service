@@ -2,16 +2,17 @@
   "name": "slimemold-service",
   "version": "0.1.0",
   "description": "Trust network and transitive transfer finding API service",
-  "main": "src/main.ts",
+  "main": "src/main.js",
   "scripts": {
     "build": "nest build",
     "clean": "rimraf dist",
     "lint": "eslint --ignore-path .gitignore .",
-    "start": "node dist/src/main",
+    "start": "node dist",
     "test": "jest",
     "test:watch": "jest --watch",
     "watch": "nest start --watch"
   },
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CirclesUBI/slimemold-service.git"
