@@ -29,7 +29,7 @@ export function validateEnvironmentVariables(
   });
 
   if (errors.length > 0) {
-    throw new Error(errors.toString());
+    throw new Error(`Missing environment variables: ${errors}`);
   }
 
   return validatedConfig;
