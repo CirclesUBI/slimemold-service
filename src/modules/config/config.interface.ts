@@ -1,4 +1,4 @@
-import { IsEnum, IsNumber } from 'class-validator';
+import { IsEnum, IsEthereumAddress, IsNumber, IsUrl } from 'class-validator';
 
 enum Environment {
   Development = 'development',
@@ -12,4 +12,17 @@ export default class Config {
 
   @IsNumber()
   PORT: number;
+
+  @IsUrl({
+    protocols: ['ws', 'wss'],
+    require_protocol: true,
+    require_tld: false,
+  })
+  ETHEREUM_NODE_WS: string;
+
+  @IsEthereumAddress()
+  HUB_ADDRESS: string;
+
+  @IsNumber()
+  START_BLOCK: number;
 }

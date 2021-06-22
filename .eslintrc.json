@@ -43,6 +43,7 @@
         }
       }
     ],
-    "sort-imports": ["error", { "ignoreDeclarationSort": true }]
+    "sort-imports": ["error", { "ignoreDeclarationSort": true }],
+    "@typescript-eslint/no-var-requires": 0
   }
 }
