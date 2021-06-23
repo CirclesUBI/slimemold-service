@@ -34,8 +34,7 @@ describe('Transfer /api/transfer', () => {
       url: '/api/transfer',
     });
 
-    expect(result.statusCode).toEqual(200);
-    expect(result.payload).toEqual('Hello, Mock!');
+    expect(result.statusCode).toEqual(400);
   });
 
   afterAll(async () => {

@@ -1,4 +1,3 @@
-import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import {
@@ -18,13 +17,6 @@ async function startServer() {
   const app = await NestFactory.create<NestFastifyApplication>(
     MainModule,
     new FastifyAdapter(),
-  );
-
-  // Validate all incoming requests
-  app.useGlobalPipes(
-    new ValidationPipe({
-      forbidUnknownValues: true,
-    }),
   );
 
   // Register middlewares
