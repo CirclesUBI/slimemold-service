@@ -25,11 +25,7 @@ function registerOpenAPI(app: NestFastifyApplication, path = '/') {
     .setLicense(pkg.license, pkg.homepage)
     .build();
 
-  const document = SwaggerModule.createDocument(app, config);
-
-  SwaggerModule.setup(path, app, document, {
-    customSiteTitle: 'Hello',
-  });
+  SwaggerModule.setup(path, app, SwaggerModule.createDocument(app, config));
 }
 
 async function initializeServer(): Promise<NestFastifyApplication> {
