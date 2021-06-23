@@ -1,35 +1,45 @@
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 import { Test } from '@nestjs/testing';
 
-import TransferController from '~/modules/transfer/transfer.controller';
+import TransferModule from '~/modules/transfer/transfer.module';
 import TransferService from '~/modules/transfer/transfer.service';
 
 describe('TransferController', () => {
-  let transferController: TransferController;
-  let transferService: TransferService;
+  let app: NestFastifyApplication;
 
-  beforeEach(async () => {
+  const transferService = { getHello: () => 'Hello, Mock!' };
+
+  beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      controllers: [TransferController],
-      providers: [TransferService],
-    }).compile();
+      imports: [TransferModule],
+    })
+      .overrideProvider(TransferService)
+      .useValue(transferService)
+      .compile();
 
-    transferService = moduleRef.get<TransferService>(TransferService);
-    transferController = moduleRef.get<TransferController>(TransferController);
+    app = moduleRef.createNestApplication<NestFastifyApplication>(
+      new FastifyAdapter(),
+    );
+
+    await app.init();
+    await app.getHttpAdapter().getInstance().ready();
   });
 
   describe('findTransferSteps', () => {
-    it('should return result', async () => {
-      jest
-        .spyOn(transferService, 'getHello')
-        .mockImplementation(() => 'Hello, Mock!');
+    it(`returns an error when request data is missing`, async () => {
+      const result = await app.inject({
+        method: 'GET',
+        url: '/api/transfer',
+      });
 
-      expect(
-        await transferController.findTransferSteps({
-          from: '',
-          to: '',
-          value: '',
-        }),
-      ).toBe('Hello, Mock!');
+      expect(result.statusCode).toEqual(400);
     });
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 });
