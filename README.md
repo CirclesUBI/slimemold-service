@@ -1,13 +1,13 @@
 <div align="center">
-	<img width="80" src="https://raw.githubusercontent.com/CirclesUBI/.github/main/assets/logo.svg" />
+  <img width="80" src="https://raw.githubusercontent.com/CirclesUBI/.github/main/assets/logo.svg" />
 </div>
 
 <h1 align="center">slimemold-service</h1>
 
 <div align="center">
- <strong>
-  Trust network and transitive transfer finding API service
- </strong>
+  <strong>
+    Trust network indexing and transfer steps finding API for Circles
+  </strong>
 </div>
 
 <br />

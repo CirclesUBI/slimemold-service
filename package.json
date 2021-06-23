@@ -1,7 +1,7 @@
 {
   "name": "slimemold-service",
   "version": "0.1.0",
-  "description": "Trust network and transitive transfer finding API service",
+  "description": "Trust network indexing and transfer steps finding API for Circles",
   "main": "src/main.js",
   "scripts": {
     "build": "nest build",
