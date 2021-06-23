@@ -1,4 +1,3 @@
-import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
@@ -26,7 +25,11 @@ function registerOpenAPI(app: NestFastifyApplication, path = '/') {
     .setLicense(pkg.license, pkg.homepage)
     .build();
 
-  SwaggerModule.setup(path, app, SwaggerModule.createDocument(app, config));
+  const document = SwaggerModule.createDocument(app, config);
+
+  SwaggerModule.setup(path, app, document, {
+    customSiteTitle: 'Hello',
+  });
 }
 
 async function initializeServer(): Promise<NestFastifyApplication> {
@@ -34,13 +37,6 @@ async function initializeServer(): Promise<NestFastifyApplication> {
   const app = await NestFactory.create<NestFastifyApplication>(
     MainModule,
     new FastifyAdapter(),
-  );
-
-  // Validate all incoming requests
-  app.useGlobalPipes(
-    new ValidationPipe({
-      forbidUnknownValues: true,
-    }),
   );
 
   // Register middlewares
