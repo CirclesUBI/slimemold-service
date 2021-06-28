@@ -70,9 +70,6 @@ cp .env.example .env
 # Check code formatting
 npm run lint
 
-# Start local server
-npm start
-
 # Start local server and watch changes
 npm run watch
 
