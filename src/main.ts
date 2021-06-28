@@ -1,4 +1,3 @@
-import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
@@ -10,6 +9,7 @@ import { fastifyHelmet } from 'fastify-helmet';
 
 import pkg from '../package.json';
 
+import ConfigService from '~/modules/config/config.service';
 import MainModule from '~/modules/main/main.module';
 
 // Accept all IPv4 addresses when running the server.
