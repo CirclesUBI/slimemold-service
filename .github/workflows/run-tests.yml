@@ -20,18 +20,10 @@ jobs:
         run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
 
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
+          cache: 'npm'
           node-version: '${{ steps.nvmrc.outputs.NODE_VERSION }}'
-
-      - name: Cache Node.js modules
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-
-            ${{ runner.OS }}-
 
       - name: Install dependencies
         run: npm install
